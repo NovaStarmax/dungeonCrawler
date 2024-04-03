@@ -1,3 +1,9 @@
+import game_functions 
+import entities
+import combat
+
+
+
 # Importations des modules spécifiques du jeu
 from game_functions import start_game, main_menu
 

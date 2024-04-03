@@ -1,4 +1,4 @@
-from entities import Player, Monster
+from entities import *
 
 def fight(player, monster):
     # Logique de combat
