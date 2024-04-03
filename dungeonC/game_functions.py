@@ -1,9 +1,19 @@
 import random
 import time
-
 from entities import Player, Monster, Weapon, generateItem, generateWeapon
 from combat import fight, UseItem
 import keyboard
+import pygame
+
+# Initialise pygame
+pygame.init()
+
+# Chargez la musique de fond
+pygame.mixer.music.load("intro.mp3")
+
+# Démarrez la musique en boucle
+pygame.mixer.music.play(-1)
+
 
 def main_menu():
     print("Welcome to the Dungeon Crawler!")
@@ -411,3 +421,4 @@ while True:
     totaltime = round((time.time() - starttime), 2)
     print("You survived for " + str(totaltime) + " seconds")
     main_menu()
+    pygame.mixer.music.stop()
