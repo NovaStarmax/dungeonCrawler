@@ -3,7 +3,7 @@ import time
 
 from entities import Player, Monster, Weapon, generateItem, generateWeapon
 from combat import fight, UseItem
-# ... autres importations nécessaires
+import keyboard
 
 def main_menu():
     print("Welcome to the Dungeon Crawler!")
@@ -140,8 +140,8 @@ def start_game():
                 size = generateMap("size")
                 printMap(map, size)
                 print("Move with wasd")
-                pressed = input("Enter w/a/s/d to move")
-                if pressed == "a":
+                pressed = input("Enter z/q/s/d to move")
+                if pressed == "q":
                     if map[playerX][playerY - 1] == "🧱":
                         print("You can't go that way")
 
@@ -266,7 +266,7 @@ def start_game():
 
 
 
-                elif pressed == "w":
+                elif pressed == "z":
                     if map[playerX - 1][playerY] == "🧱":
                         print("You can't go that way")
                     
