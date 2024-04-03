@@ -1,7 +1,8 @@
 import random
 import time
-from entities import *
-from combat import *
+
+from entities import Player, Monster, Weapon, generateItem, generateWeapon
+from combat import fight, UseItem
 # ... autres importations nécessaires
 
 def main_menu():

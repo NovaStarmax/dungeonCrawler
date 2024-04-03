@@ -1,8 +1,4 @@
-from combat import *
-
 import random
-import os
-import sys
 
 class Weapon:
     # Classe Weapon avec ses méthodes
@@ -215,21 +211,3 @@ def generateItem():
         return Item("Scroll of MaxHealth", health=100)
     elif item == 1000:
         return Item("Scroll of Ultimate Power", attack=30, defense=20, health=100)
-    
-def Enchants(weapon,monster,player):
-    if weapon.enchant == "Sharpness":
-        weapon.attack += 2
-    elif weapon.enchant == "Fire":
-        print("Your fire enchanted weapon burns the {}! It dealt 2 damage".format(monster.name))
-        monster.health -= 2
-    elif weapon.enchant == "Defensive Light":
-        player.defense += 2
-    elif weapon.enchant == "Lightning":
-        print("The {} was struck by lightning! It dealt 10 damage".format(monster.name))
-        monster.health -= 10
-        
-def UndoEnchants(weapon,player):
-    if weapon.enchant == "Sharpness":
-        weapon.attack -= 2
-    elif weapon.enchant == "Defensive Light":
-        player.defense -= 2

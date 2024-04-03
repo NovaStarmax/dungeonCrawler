@@ -1,4 +1,6 @@
-from entities import *
+from entities import Player, Monster, Weapon, Item
+from combat_utils import Enchants, UndoEnchants, do_health
+import random
 
 def fight(player, monster):
     # Logique de combat
@@ -57,22 +59,6 @@ def fight(player, monster):
         print("You killed the " + monster.name)
         print("You have " + str(player.getHealth()) + " health")
         print("\n"*30)
-
-def do_health(maxHealth, health, healthDashes):
-    # Affichage de la barre de santé
-  dashConvert = int(maxHealth/healthDashes)            
-  try:
-    currentDashes = int(health/dashConvert)              
-  except ZeroDivisionError:
-    currentDashes = 0   
-  remainingHealth = healthDashes - currentDashes       
-
-  healthDisplay = '❤️' * currentDashes                  
-  remainingDisplay = ' ' * remainingHealth             
-  percent = str(int((health/maxHealth)*100)) + "%"     
-
-  print("" + healthDisplay + remainingDisplay + "")  
-  print("         " + percent + "    {}/{}".format(health, maxHealth)) 
 
 def UseItem(player, item):
     # Utilisation d'un objet
