@@ -16,16 +16,16 @@ pygame.mixer.music.play(-1)
 
 
 def main_menu():
-    print("Welcome to the Dungeon Crawler!")
-    print("1. Start Game")
-    print("2. Exit")
-    choice = input("Enter your choice: ")
+    print("Bienvenue dans le jeu Dungeon Crawler !")
+    print("1. Démarrer le jeu")
+    print("2. Quitter")
+    choice = input("Entrez votre choix : ")
     if choice == "1":
         start_game()
     elif choice == "2":
         exit()
     else:
-        print("Invalid choice")
+        print("Choix invalide")
         main_menu()
 
 MapS = 10
