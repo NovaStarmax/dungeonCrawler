@@ -132,28 +132,28 @@ def start_game():
     while True:
         if player.health <= 0:
             break
-        print("Rooms cleared: " + str(roomsCleared))
+        print("Salles nettoyées : " + str(roomsCleared))
         size = generateMap("size")
         printMap(map, size)
-        print("1. Move")
-        print("2. Quit")
-        print("3. Player Stats")
-        print("4. Tutorial")
+        print("1. Se déplacer")
+        print("2. Quitter")
+        print("3. Statistiques du joueur")
+        print("4. Tutoriel")
         
-        choice = input("Enter your choice: ")
+        choice = input("Entrez votre choix : ")
         if choice == "1":
             while True:
                 print("\n"*50)
                 if player.health <= 0:
                     break
-                print("Rooms cleared: " + str(roomsCleared))
+                print("Salles nettoyées : " + str(roomsCleared))
                 size = generateMap("size")
                 printMap(map, size)
-                print("Move with wasd")
-                pressed = input("Enter z/q/s/d to move")
+                print("Déplacez-vous avec les touches zqsd")
+                pressed = input("Appuyez sur z/q/s/d pour vous déplacer")
                 if pressed == "q":
                     if map[playerX][playerY - 1] == "🧱":
-                        print("You can't go that way")
+                        print("Vous ne pouvez pas aller par là")
 
 
                     elif map[playerX][playerY - 1] == "👹":
@@ -168,37 +168,37 @@ def start_game():
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
-                            print("You found a " + item.getName())
-                            print("1. Use")
-                            print("2. Leave")
-                            choice = input("Enter your choice: ")
+                            print("Tu as trouvé " + item.getName())
+                            print("1. Utiliser")
+                            print("2. Ne pas utiliser")
+                            choice = input("Entrez votre choix : ")
                             if choice == "1":
                                 UseItem(player, item)
                             elif choice == "2":
                                 pass
                             else:
-                                print("Invalid choice")
+                                print("Choix invalide")
                         else:
-                            print("You found a weapon")
+                            print("Vous avez trouvé une arme.")
                             currentAtc = player.getAttack()
                             weapon = generateWeapon()
-                            print("You found a " + weapon.getName())
-                            print("This weapon does " + str(weapon.getAttack()) + " damage")
+                            print("Vous avez trouvé une " + weapon.getName())
+                            print("Cette arme inflige " + str(weapon.getAttack()) + " de dégâts.")
                             if weapon.getAttack() > player.weapon.getAttack():
-                                print("You equiped the " + weapon.getName())
+                                print("Vous avez équipé la " + weapon.getName())
                                 player.attack -= currentAtc
                                 player.attack += weapon.getAttack()
                                 player.weapon = weapon
                                 time.sleep(1)
                             else:
-                                print("You didn't equip the " + weapon.getName())
+                                print("Vous n'avez pas équipé la " + weapon.getName())
                         map[playerX][playerY] = "  "
                         playerY -= 1
                         map[playerX][playerY] = "🧑"
                     
                     elif map[playerX][playerY - 1] == "🏴":
                         print("\n"*30)
-                        print("NEW ROOM")
+                        print("NOUVELLE SALLE")
                         roomsCleared += 1
                         map = generateMap(None,True)
                         playerX, playerY = [1,1]
@@ -216,7 +216,7 @@ def start_game():
 
                 elif pressed == "d":
                     if map[playerX][playerY + 1] == "🧱":
-                        print("You can't go that way")
+                        print("Vous ne pouvez pas aller dans cette direction.")
                     
                     elif map[playerX][playerY + 1] == "👹":
                         monster = random.choice(monsters)
@@ -228,7 +228,7 @@ def start_game():
 
                     elif map[playerX][playerY + 1] == "🏴":
                         print("\n"*30)
-                        print("NEW ROOM")
+                        print("NOUVELLE SALLE")
                         roomsCleared += 1
                         map = generateMap(None,True)
                         playerX, playerY = [1,1]
@@ -239,30 +239,30 @@ def start_game():
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
-                            print("You found a " + item.getName())
-                            print("1. Use")
-                            print("2. Leave")
-                            choice = input("Enter your choice: ")
+                            print("Vous avez trouvé un " + item.getName())
+                            print("1. Utiliser")
+                            print("2. Laisser")
+                            choice = input("Entrez votre choix : ")
                             if choice == "1":
                                 UseItem(player, item)
                             elif choice == "2":
                                 pass
                             else:
-                                print("Invalid choice")
+                                print("Choix invalide.")
                         else:
-                            print("You found a weapon")
+                            print("Vous avez trouvé une arme.")
                             currentAtc = player.getAttack()
                             weapon = generateWeapon()
-                            print("You found a " + weapon.getName())
-                            print("This weapon does " + str(weapon.getAttack()) + " damage")
+                            print("Vous avez trouvé une " + weapon.getName())
+                            print("Cette arme inflige " + str(weapon.getAttack()) + " de dégâts.")
                             if weapon.getAttack() > player.weapon.getAttack():
-                                print("You equiped the " + weapon.getName())
+                                print("Vous avez équipé la " + weapon.getName())
                                 player.attack -= currentAtc
                                 player.attack += weapon.getAttack()
                                 player.weapon = weapon
                                 time.sleep(1)
                             else:
-                                print("You didn't equip the " + weapon.getName())
+                                print("Vous n'avez pas équipé la " + weapon.getName())
                         map[playerX][playerY] = "  "
                         playerY += 1
                         map[playerX][playerY] = "🧑"
@@ -278,7 +278,7 @@ def start_game():
 
                 elif pressed == "z":
                     if map[playerX - 1][playerY] == "🧱":
-                        print("You can't go that way")
+                        print("Vous ne pouvez pas aller dans cette direction.")
                     
                     elif map[playerX - 1][playerY] == "👹":
                         monster = random.choice(monsters)
@@ -290,7 +290,7 @@ def start_game():
 
                     elif map[playerX-1][playerY] == "🏴":
                         print("\n"*30)
-                        print("NEW ROOM")
+                        print("NOUVELLE SALLE")
                         roomsCleared += 1
                         map = generateMap(None,True)
                         playerX, playerY = [1,1]
@@ -301,30 +301,30 @@ def start_game():
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
-                            print("You found a " + item.getName())
-                            print("1. Use")
-                            print("2. Leave")
-                            choice = input("Enter your choice: ")
+                            print("Vous avez trouvé un " + item.getName())
+                            print("1. Utiliser")
+                            print("2. Laisser")
+                            choice = input("Entrez votre choix : ")
                             if choice == "1":
                                 UseItem(player, item)
                             elif choice == "2":
                                 pass
                             else:
-                                print("Invalid choice")
+                                print("Choix invalide.")
                         else:
-                            print("You found a weapon")
+                            print("Vous avez trouvé une arme")
                             currentAtc = player.getAttack()
                             weapon = generateWeapon()
-                            print("You found a " + weapon.getName())
-                            print("This weapon does " + str(weapon.getAttack()) + " damage")
+                            print("Vous avez trouvé une " + weapon.getName())
+                            print("Cette arme inflige " + str(weapon.getAttack()) + " de dégâts")
                             if weapon.getAttack() > player.weapon.getAttack():
-                                print("You equiped the " + weapon.getName())
+                                print("Vous avez équipé la " + weapon.getName())
                                 player.attack -= currentAtc
                                 player.attack += weapon.getAttack()
                                 player.weapon = weapon
                                 time.sleep(1)
                             else:
-                                print("You didn't equip the " + weapon.getName())
+                                print("Vous n'avez pas équipé la " + weapon.getName())
                         map[playerX][playerY] = "  "
                         playerX -= 1
                         map[playerX][playerY] = "🧑"
@@ -340,7 +340,7 @@ def start_game():
 
                 elif pressed == "s":
                     if map[playerX + 1][playerY] == "🧱":
-                        print("You can't go that way")
+                        print("Vous ne pouvez pas aller par là")
 
 
                     elif map[playerX + 1][playerY] == "👹":
@@ -353,7 +353,7 @@ def start_game():
 
                     elif map[playerX+1][playerY] == "🏴":
                         print("\n"*30)
-                        print("NEW ROOM")
+                        print("NOUVELLE PIÈCE")
                         roomsCleared += 1
                         map = generateMap(None,True)
                         playerX, playerY = [1,1]
@@ -364,30 +364,30 @@ def start_game():
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
-                            print("You found a " + item.getName())
-                            print("1. Use")
-                            print("2. Leave")
-                            choice = input("Enter your choice: ")
+                            print("Vous avez trouvé un " + item.getName())
+                            print("1. Utiliser")
+                            print("2. Laisser")
+                            choice = input("Entrez votre choix : ")
                             if choice == "1":
                                 UseItem(player, item)
                             elif choice == "2":
                                 pass
                             else:
-                                print("Invalid choice")
+                                print("Choix invalide")
                         else:
-                            print("You found a weapon")
+                            print("Vous avez trouvé une arme")
                             currentAtc = player.getAttack()
                             weapon = generateWeapon()
-                            print("You found a " + weapon.getName())
-                            print("This weapon does " + str(weapon.getAttack()) + " damage")
+                            print("Vous avez trouvé une " + weapon.getName())
+                            print("Cette arme inflige " + str(weapon.getAttack()) + " de dégâts")
                             if weapon.getAttack() > player.weapon.getAttack():
-                                print("You equiped the " + weapon.getName())
+                                print("Vous avez équipé la " + weapon.getName())
                                 player.attack -= currentAtc
                                 player.attack += weapon.getAttack()
                                 player.weapon = weapon
                                 time.sleep(1)
                             else:
-                                print("You didn't equip the " + weapon.getName())
+                                print("Vous n'avez pas équipé la " + weapon.getName())
                         map[playerX][playerY] = "  "
                         playerX += 1
                         map[playerX][playerY] = "🧑"
@@ -401,24 +401,24 @@ def start_game():
 
 
                 else:
-                    print("Invalid choice")
+                    print("Choix invalide")
             
         elif choice == "2":
             exit()
         elif choice == "3":
-            print("Attack: " + str(player.getAttack()))
-            print("Health: {}/{}".format(player.getHealth(), player.getMaxHealth()))
+            print("Attaque : " + str(player.getAttack()))
+            print("Santé : {}/{}".format(player.getHealth(), player.getMaxHealth()))
         elif choice == "4":
-            print("'🧱' are walls that you can't go through.")
-            print("'👹' are monsters that you can fight.")
-            print("'🏴' are exits that lead to the next room.")
-            print("'📦' are items that you can use, Be aware you cant use items during fights only when found.")
-            print("'🧑' is you.")
+            print("'🧱' sont des murs que vous ne pouvez pas traverser.")
+            print("'👹' sont des monstres contre lesquels vous pouvez vous battre.")
+            print("'🏴' sont les sorties menant à la pièce suivante.")
+            print("'📦' sont des objets que vous pouvez utiliser. Notez que vous ne pouvez pas utiliser d'objets pendant les combats, seulement lorsque vous les trouvez.")
+            print("'🧑' représente votre personnage.")
         else:
-            print("Invalid choice")
+            print("Choix invalide")
 while True:
-    print("You cleared " + str(roomsCleared) + " rooms")
+    print("Vous avez nettoyé " + str(roomsCleared) + " pièces")
     totaltime = round((time.time() - starttime), 2)
-    print("You survived for " + str(totaltime) + " seconds")
+    print("Vous avez survécu pendant " + str(totaltime) + " secondes")
     main_menu()
     pygame.mixer.music.stop()
