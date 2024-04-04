@@ -2,12 +2,12 @@ def Enchants(weapon,monster,player):
     if weapon.enchant == "Sharpness":
         weapon.attack += 2
     elif weapon.enchant == "Fire":
-        print("Your fire enchanted weapon burns the {}! It dealt 2 damage".format(monster.name))
+        print("Votre arme enchantée de feu brûle le {} ! Elle inflige 2 points de dégâts.".format(monster.name))
         monster.health -= 2
     elif weapon.enchant == "Defensive Light":
         player.defense += 2
     elif weapon.enchant == "Lightning":
-        print("The {} was struck by lightning! It dealt 10 damage".format(monster.name))
+        print("Le {} a été frappé par la foudre ! Cela lui a infligé 10 points de dégâts.".format(monster.name))
         monster.health -= 10
         
 def UndoEnchants(weapon,player):
