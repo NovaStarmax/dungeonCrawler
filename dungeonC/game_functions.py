@@ -46,7 +46,7 @@ def generateMap(size=None, generate=False):
 
     for i in range(0, MapS):
         for j in range(0, MapS):
-            if random.randint(0, 100) < 10 and map[i][j] == "  ":
+            if random.randint(0, 100) < 5 and map[i][j] == "  ":
                 map[i][j] = "👹"
     for i in range(0, MapS):
         for j in range(0, MapS):
