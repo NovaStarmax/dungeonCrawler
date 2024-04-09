@@ -1,6 +1,11 @@
 import game_functions
 import entities
 import combat
+import sys
+
+# Rediriger stdout vers la console
+sys.stdout = sys.__stdout__
+
 
 
 # Importations des modules spécifiques du jeu

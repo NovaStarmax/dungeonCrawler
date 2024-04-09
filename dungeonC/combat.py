@@ -23,13 +23,8 @@ def fight(player, monster):
             print("Monstre:")
             print(do_health(monster.getMaxHealth(), monster.health, int(monster.getMaxHealth()/5)))
             if monster.health > 0:
-                if monster.attack - round(player.defense / 5.0) < 0.0:
-                    player.health -= 0
-                    damageDone = 0
-                else:
-                    player.health -= monster.attack-round(player.defense/5)
-                    damageDone = monster.attack-round(player.defense/5)
-                print("Vous attaquez " + monster.name + " et lui infligez " + str(damageDone) + " points de dégâts")
+                player.health -= monster.attack - round(player.defense / 5)
+                print("Le " + monster.name + " vous attaque et vous inflige " + str(monster.attack - round(player.defense / 5)) + " points de dégâts")
                 print("Joueur:")
                 print(do_health(player.getMaxHealth(), player.getHealth(), 20))
             UndoEnchants(player.getWeapon(),player)
@@ -39,26 +34,22 @@ def fight(player, monster):
                 print("Vous avez réussi à fuir.")
                 return
             else:
-                Enchants(player.getWeapon(),monster,player)
                 print("Vous n'avez pas réussi à fuir.")
-                if monster.attack-round(player.defense/5.0) < 0.0:
-                    player.health -= 0
-                    damageDone = 0
-                else:
-                    player.health -= monster.attack-round(player.defense/5)
-                    damageDone = monster.attack-round(player.defense/5)
-                print(monster.name + " vous attaque et vous inflige " + str(damageDone) + " points de dégâts")
+                player.health -= monster.attack - round(player.defense / 5)
+                print(monster.name + " vous attaque et vous inflige " + str(monster.attack - round(player.defense / 5)) + " points de dégâts")
                 print("Joueur:")
                 print(do_health(player.getMaxHealth(), player.getHealth(), 20))
-                UndoEnchants(player.getWeapon(),player)
         else:
             print("Choix invalide")
+    
     if player.getHealth() <= 0:
         print("Vous êtes mort.")
-    else:
-        print("Vous avez vaincu " + monster.name)
+    elif monster.health <= 0:
+        print("Vous avez vaincu " + monster.name + " et trouvé une clé !")
+        player.has_key = True  # Attribue la clé au joueur
         print("Il vous reste " + str(player.getHealth()) + " points de santé.")
         print("\n"*30)
+
 
 def UseItem(player, item):
     # Utilisation d'un objet

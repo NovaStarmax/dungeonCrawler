@@ -93,6 +93,9 @@ def printMap(map, mapS):
 
 roomsCleared = 0
 starttime = time.time()
+has_key = False
+key_used = False
+
 def start_game():
     # Code pour démarrer le jeu
     global starttime
@@ -102,35 +105,89 @@ def start_game():
     roomsCleared = 0
     player = Player(100.0,100.0, Weapon("Sword", 5).getAttack(), 1.0,Weapon("Sword",5))
     
-    monster1 = Monster("Goblin 👺", 20.0, 5.0, 20.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster2 = Monster("Orc 👿", 30.0, 10.0, 30.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster3 = Monster("Troll 🐸", 50.0, 15.0, 50.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster4 = Monster("Dragon 🐉", 100.0, 20.0, 100.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster5 = Monster("Giant 🧍", 150.0, 25.0, 150.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster6 = Monster("Giant Spider 🕷️", 10.0, 2.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster7 = Monster("Giant Rat 🐀", 5.0, 1.0, 5.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster8 = Monster("Giant Snake 🐍", 15.0, 3.0, 15.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster9 = Monster("Giant Scorpion 🦂", 25.0, 4.0, 25.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster10 = Monster("Giant Ant 🐜", 10.0, 2.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster11 = Monster("Giant Bee 🐝", 10.0, 2.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster12 = Monster("Giant Bat 🦇", 10.0, 2.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster13 = Monster("Giant Wolf 🐺", 20.0, 5.0, 20.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster14 = Monster("Giant Bear 🐻", 30.0, 10.0, 30.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster15 = Monster("Giant Lion 🦁", 50.0, 15.0, 50.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster16 = Monster("Giant Tiger 🐅", 50.0, 15.0, 50.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster17 = Monster("Giant Elephant 🐘", 100.0, 20.0, 100.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster18 = Monster("Gryphon 🦅", 120.0, 20.0, 120.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster19 = Monster("Hydra 🐉", 150.0, 25.0, 150.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster20 = Monster("Minotaur 🐂", 80.0, 30.0, 80.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster21 = Monster("Cyclops 👁️", 100.0, 30.0, 100.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster22 = Monster("Golem 🗿", 150.0, 30.0, 150.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster23 = Monster("Skeleton 💀", 20.0, 5.0, 20.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster24 = Monster("Zombie 🧟", 30.0, 10.0, 30.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster25 = Monster("Vampire 🧛", 30.0, 15.0, 30.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster26 = Monster("Werewolf 🐺", 50.0, 20.0, 50.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster27 = Monster("Wraith 👻", 10.0, 15.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
-    monster28 = Monster("Ghost 👻", 20.0, 10.0, 20.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster1 = Monster("Goblin 👺", 20.0, 5.0, 20.0)
+    monster1.attack = monster1.generateRandomAttack()
 
+    monster2 = Monster("Orc 👿", 30.0, 10.0, 30.0)
+    monster2.attack = monster1.generateRandomAttack()
+
+    monster3 = Monster("Troll 🐸", 50.0, 15.0, 50.0)
+    monster3.attack = monster1.generateRandomAttack()
+
+    monster4 = Monster("Dragon 🐉", 100.0, 20.0, 100.0)
+    monster4.attack = monster1.generateRandomAttack()
+
+    monster5 = Monster("Giant 🧍", 150.0, 25.0, 150.0)
+    monster5.attack = monster1.generateRandomAttack()
+
+    monster6 = Monster("Giant Spider 🕷️", 10.0, 2.0, 10.0)
+    monster6.attack = monster1.generateRandomAttack()
+
+    monster7 = Monster("Giant Rat 🐀", 5.0, 1.0, 5.0)
+    monster7.attack = monster1.generateRandomAttack()
+
+    monster8 = Monster("Giant Snake 🐍", 15.0, 3.0, 15.0)
+    monster8.attack = monster1.generateRandomAttack()
+
+    monster9 = Monster("Giant Scorpion 🦂", 25.0, 4.0, 25.0)
+    monster9.attack = monster1.generateRandomAttack()
+
+    monster10 = Monster("Giant Ant 🐜", 10.0, 2.0, 10.0)
+    monster10.attack = monster1.generateRandomAttack()
+
+    monster11 = Monster("Giant Bee 🐝", 10.0, 2.0, 10.0)
+    monster11.attack = monster1.generateRandomAttack()
+
+    monster12 = Monster("Giant Bat 🦇", 10.0, 2.0, 10.0)
+    monster12.attack = monster1.generateRandomAttack()
+
+    monster13 = Monster("Giant Wolf 🐺", 20.0, 5.0, 20.0)
+    monster13.attack = monster1.generateRandomAttack()
+
+    monster14 = Monster("Giant Bear 🐻", 30.0, 10.0, 30.0)
+    monster14.attack = monster1.generateRandomAttack()
+
+    monster15 = Monster("Giant Lion 🦁", 50.0, 15.0, 50.0)
+    monster15.attack = monster1.generateRandomAttack()
+
+    monster16 = Monster("Giant Tiger 🐅", 50.0, 15.0, 50.0)
+    monster16.attack = monster1.generateRandomAttack()
+
+    monster17 = Monster("Giant Elephant 🐘", 100.0, 20.0, 100.0)
+    monster17.attack = monster1.generateRandomAttack()
+
+    monster18 = Monster("Gryphon 🦅", 120.0, 20.0, 120.0)
+    monster18.attack = monster1.generateRandomAttack()
+
+    monster19 = Monster("Hydra 🐉", 150.0, 25.0, 150.0)
+    monster19.attack = monster1.generateRandomAttack()
+
+    monster20 = Monster("Minotaur 🐂", 80.0, 30.0, 80.0)
+    monster20.attack = monster1.generateRandomAttack()
+
+    monster21 = Monster("Cyclops 👁️", 100.0, 30.0, 100.0)
+    monster21.attack = monster1.generateRandomAttack()
+
+    monster22 = Monster("Golem 🗿", 150.0, 30.0, 150.0)
+    monster22.attack = monster1.generateRandomAttack()
+
+    monster23 = Monster("Skeleton 💀", 20.0, 5.0, 20.0)
+    monster23.attack = monster1.generateRandomAttack()
+
+    monster24 = Monster("Zombie 🧟", 30.0, 10.0, 30.0)
+    monster24.attack = monster1.generateRandomAttack()
+
+    monster25 = Monster("Vampire 🧛", 30.0, 15.0, 30.0)
+    monster25.attack = monster1.generateRandomAttack()
+
+    monster26 = Monster("Werewolf 🐺", 50.0, 20.0, 50.0)
+    monster26.attack = monster1.generateRandomAttack()
+
+    monster27 = Monster("Wraith 👻", 10.0, 15.0, 10.0)
+    monster27.attack = monster1.generateRandomAttack()
+
+    monster28 = Monster("Ghost 👻", 20.0, 10.0, 20.0)
+    monster28.attack = monster1.generateRandomAttack()
 
 
     playerX, playerY = [1, 1]
@@ -156,91 +213,63 @@ def start_game():
                 size = generateMap("size")
                 printMap(map, size)
                 print("Déplacez-vous avec les touches zqsd")
-                pressed = input("Appuyez sur z/q/s/d pour vous déplacer")
-                if pressed == "q":
-                    if map[playerX][playerY - 1] == "🧱":
+                pressed = ("Appuyez sur z/q/s/d pour vous déplacer")
+                pressed = keyboard.read_key()
+                time.sleep(0.1)
+
+
+                if pressed == "z":
+                    if map[playerX - 1][playerY] == "🧱":
                         print("Vous ne pouvez pas aller par là")
-
-
-                    elif map[playerX][playerY - 1] == "👹":
-                        monster = random.choice(monsters)
+                    elif map[playerX - 1][playerY] == "👹":
+                        monster = monsters[random.randint(0, len(monsters) - 1)]
                         fight(player, monster)
                         map[playerX][playerY] = "  "
-                        playerY -= 1
+                        playerX -= 1
                         map[playerX][playerY] = "🧑"
-
-
-                    elif map[playerX][playerY - 1] == "📦":
-                        itemOrWeapon = random.randint(1,100)
-                        if itemOrWeapon <=75:
-                            item = generateItem()
-                            print("Tu as trouvé " + item.getName())
-                            print("1. Utiliser")
-                            print("2. Ne pas utiliser")
-                            choice = input("Entrez votre choix : ")
-                            if choice == "1":
-                                UseItem(player, item)
-                            elif choice == "2":
-                                pass
-                            else:
-                                print("Choix invalide")
+                        has_key = True
+                    elif map[playerX - 1][playerY] == "🏴":
+                        if has_key and not key_used:  
+                            print("\n" * 30)
+                            print("NOUVELLE SALLE")
+                            roomsCleared += 1
+                            map = generateMap(None, True)
+                            playerX, playerY = [1, 1]
+                            map[playerX][playerY] = "🧑"
+                            key_used = True  
+                        elif has_key and key_used:
+                            print("Vous avez déjà utilisé la clé pour cette porte.")
                         else:
-                            print("Vous avez trouvé une arme.")
-                            currentAtc = player.getAttack()
-                            weapon = generateWeapon()
-                            print("Vous avez trouvé une " + weapon.getName())
-                            print("Cette arme inflige " + str(weapon.getAttack()) + " de dégâts.")
-                            if weapon.getAttack() > player.weapon.getAttack():
-                                print("Vous avez équipé la " + weapon.getName())
-                                player.attack -= currentAtc
-                                player.attack += weapon.getAttack()
-                                player.weapon = weapon
-                                time.sleep(1)
-                            else:
-                                print("Vous n'avez pas équipé la " + weapon.getName())
-                        map[playerX][playerY] = "  "
-                        playerY -= 1
-                        map[playerX][playerY] = "🧑"
-                    
-                    elif map[playerX][playerY - 1] == "🏴":
-                        print("\n"*30)
-                        print("NOUVELLE SALLE")
-                        roomsCleared += 1
-                        map = generateMap(None,True)
-                        playerX, playerY = [1,1]
-                        map[playerX][playerY] = "🧑"
-
-
+                            print("Vous avez besoin d'une clé pour ouvrir cette porte.")
+                    elif map[playerX - 1][playerY] == "📦":
+                        # Gérer la découverte d'un objet ou d'une arme ici
+                        pass
                     else:
                         map[playerX][playerY] = "  "
-                        playerY -= 1
+                        playerX -= 1
                         map[playerX][playerY] = "🧑"
-
-
-
 
 
                 elif pressed == "d":
                     if map[playerX][playerY + 1] == "🧱":
-                        print("Vous ne pouvez pas aller dans cette direction.")
-                    
+                        print("Vous ne pouvez pas aller par là")
                     elif map[playerX][playerY + 1] == "👹":
-                        monster = random.choice(monsters)
+                        monster = monsters[random.randint(0, len(monsters) - 1)]
                         fight(player, monster)
                         map[playerX][playerY] = "  "
                         playerY += 1
                         map[playerX][playerY] = "🧑"
-
-
+                        has_key = True
                     elif map[playerX][playerY + 1] == "🏴":
-                        print("\n"*30)
-                        print("NOUVELLE SALLE")
-                        roomsCleared += 1
-                        map = generateMap(None,True)
-                        playerX, playerY = [1,1]
-                        map[playerX][playerY] = "🧑"
-
-
+                        if has_key:
+                            print("\n"*30)
+                            print("NOUVELLE SALLE")
+                            roomsCleared += 1
+                            map = generateMap(None,True)
+                            playerX, playerY = [1,1]
+                            map[playerX][playerY] = "🧑"
+                        else:
+                            print("Vous avez besoin d'une clé pour ouvrir cette porte.")
                     elif map[playerX][playerY + 1] == "📦":
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
@@ -254,69 +283,7 @@ def start_game():
                             elif choice == "2":
                                 pass
                             else:
-                                print("Choix invalide.")
-                        else:
-                            print("Vous avez trouvé une arme.")
-                            currentAtc = player.getAttack()
-                            weapon = generateWeapon()
-                            print("Vous avez trouvé une " + weapon.getName())
-                            print("Cette arme inflige " + str(weapon.getAttack()) + " de dégâts.")
-                            if weapon.getAttack() > player.weapon.getAttack():
-                                print("Vous avez équipé la " + weapon.getName())
-                                player.attack -= currentAtc
-                                player.attack += weapon.getAttack()
-                                player.weapon = weapon
-                                time.sleep(1)
-                            else:
-                                print("Vous n'avez pas équipé la " + weapon.getName())
-                        map[playerX][playerY] = "  "
-                        playerY += 1
-                        map[playerX][playerY] = "🧑"
-
-
-                    else:
-                        map[playerX][playerY] = "  "
-                        playerY += 1
-                        map[playerX][playerY] = "🧑"
-
-
-
-
-                elif pressed == "z":
-                    if map[playerX - 1][playerY] == "🧱":
-                        print("Vous ne pouvez pas aller dans cette direction.")
-                    
-                    elif map[playerX - 1][playerY] == "👹":
-                        monster = random.choice(monsters)
-                        fight(player, monster)
-                        map[playerX][playerY] = "  "
-                        playerX -= 1
-                        map[playerX][playerY] = "🧑"
-
-
-                    elif map[playerX-1][playerY] == "🏴":
-                        print("\n"*30)
-                        print("NOUVELLE SALLE")
-                        roomsCleared += 1
-                        map = generateMap(None,True)
-                        playerX, playerY = [1,1]
-                        map[playerX][playerY] = "🧑"
-
-
-                    elif map[playerX-1][playerY] == "📦":
-                        itemOrWeapon = random.randint(1,100)
-                        if itemOrWeapon <=75:
-                            item = generateItem()
-                            print("Vous avez trouvé un " + item.getName())
-                            print("1. Utiliser")
-                            print("2. Laisser")
-                            choice = input("Entrez votre choix : ")
-                            if choice == "1":
-                                UseItem(player, item)
-                            elif choice == "2":
-                                pass
-                            else:
-                                print("Choix invalide.")
+                                print("Choix invalide")
                         else:
                             print("Vous avez trouvé une arme")
                             currentAtc = player.getAttack()
@@ -332,41 +299,91 @@ def start_game():
                             else:
                                 print("Vous n'avez pas équipé la " + weapon.getName())
                         map[playerX][playerY] = "  "
-                        playerX -= 1
+                        playerY += 1
                         map[playerX][playerY] = "🧑"
-
-
                     else:
                         map[playerX][playerY] = "  "
-                        playerX -= 1
+                        playerY += 1
                         map[playerX][playerY] = "🧑"
 
-
+                elif pressed == "q":
+                    if map[playerX][playerY - 1] == "🧱":
+                        print("Vous ne pouvez pas aller par là")
+                    elif map[playerX][playerY - 1] == "👹":
+                        monster = monsters[random.randint(0, len(monsters) - 1)]
+                        fight(player, monster)
+                        map[playerX][playerY] = "  "
+                        playerY -= 1
+                        map[playerX][playerY] = "🧑"
+                        has_key = True
+                    elif map[playerX][playerY - 1] == "🏴":
+                        if has_key:
+                            print("\n"*30)
+                            print("NOUVELLE SALLE")
+                            roomsCleared += 1
+                            map = generateMap(None,True)
+                            playerX, playerY = [1,1]
+                            map[playerX][playerY] = "🧑"
+                        else:
+                            print("Vous avez besoin d'une clé pour ouvrir cette porte.")
+                    elif map[playerX][playerY - 1] == "📦":
+                        itemOrWeapon = random.randint(1,100)
+                        if itemOrWeapon <=75:
+                            item = generateItem()
+                            print("Vous avez trouvé un " + item.getName())
+                            print("1. Utiliser")
+                            print("2. Laisser")
+                            choice = input("Entrez votre choix : ")
+                            if choice == "1":
+                                UseItem(player, item)
+                            elif choice == "2":
+                                pass
+                            else:
+                                print("Choix invalide")
+                        else:
+                            print("Vous avez trouvé une arme")
+                            currentAtc = player.getAttack()
+                            weapon = generateWeapon()
+                            print("Vous avez trouvé une " + weapon.getName())
+                            print("Cette arme inflige " + str(weapon.getAttack()) + " de dégâts")
+                            if weapon.getAttack() > player.weapon.getAttack():
+                                print("Vous avez équipé la " + weapon.getName())
+                                player.attack -= currentAtc
+                                player.attack += weapon.getAttack()
+                                player.weapon = weapon
+                                time.sleep(1)
+                            else:
+                                print("Vous n'avez pas équipé la " + weapon.getName())
+                        map[playerX][playerY] = "  "
+                        playerY -= 1
+                        map[playerX][playerY] = "🧑"
+                    else:
+                        map[playerX][playerY] = "  "
+                        playerY -= 1
+                        map[playerX][playerY] = "🧑"
 
 
                 elif pressed == "s":
                     if map[playerX + 1][playerY] == "🧱":
                         print("Vous ne pouvez pas aller par là")
-
-
                     elif map[playerX + 1][playerY] == "👹":
                         monster = monsters[random.randint(0, len(monsters) - 1)]
                         fight(player, monster)
                         map[playerX][playerY] = "  "
                         playerX += 1
                         map[playerX][playerY] = "🧑"
-
-
-                    elif map[playerX+1][playerY] == "🏴":
-                        print("\n"*30)
-                        print("NOUVELLE PIÈCE")
-                        roomsCleared += 1
-                        map = generateMap(None,True)
-                        playerX, playerY = [1,1]
-                        map[playerX][playerY] = "🧑"
-
-
-                    elif map[playerX+1][playerY] == "📦":
+                        has_key = True
+                    elif map[playerX + 1][playerY] == "🏴":
+                        if has_key:
+                            print("\n"*30)
+                            print("NOUVELLE SALLE")
+                            roomsCleared += 1
+                            map = generateMap(None,True)
+                            playerX, playerY = [1,1]
+                            map[playerX][playerY] = "🧑"
+                        else:
+                            print("Vous avez besoin d'une clé pour ouvrir cette porte.")
+                    elif map[playerX + 1][playerY] == "📦":
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
@@ -397,11 +414,11 @@ def start_game():
                         map[playerX][playerY] = "  "
                         playerX += 1
                         map[playerX][playerY] = "🧑"
-
                     else:
                         map[playerX][playerY] = "  "
                         playerX += 1
-                        map[playerX][playerY] = "🧑"       
+                        map[playerX][playerY] = "🧑"
+
             
         elif choice == "2":
             exit()
@@ -417,7 +434,6 @@ def start_game():
         else:
             print("Choix invalide")
         
-
 
 while True:
     print("Vous avez nettoyé " + str(roomsCleared) + " pièces")
