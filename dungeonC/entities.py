@@ -61,6 +61,14 @@ class Player:
         return self.defense
     def getWeapon(self):
         return self.weapon
+    def generateRandomAttack(self):
+        choice = random.randint(0, 1)  # Générer un nombre aléatoire entre 0 et 2
+
+        if choice == 0:
+            return int(self.attack)  # Retourner l'attaque maximale 
+        elif choice == 1:
+            return int(self.attack / 2)  # Retourner la moitié de l'attaque maximale si le choix est 1
+            
 
 class Monster:
     # Classe Monster avec ses méthodes
@@ -85,7 +93,14 @@ class Monster:
         return self.maxhealth
     
     def generateRandomAttack(self):
-        return random.uniform(0, self.attack)
+        choice = random.randint(0, 2)  # Générer un nombre aléatoire entre 0 et 2
+
+        if choice == 0:
+            return 0  # Retourner 0 si le choix est 0
+        elif choice == 1:
+            return int(self.attack / 2)  # Retourner la moitié de l'attaque maximale si le choix est 1
+        else:
+            return int(self.attack)  # Retourner l'attaque maximale si le choix est 2
 
 
 # Fonctions de génération aléatoire pour les armes et les objets

@@ -5,6 +5,7 @@ from combat import fight, UseItem
 import keyboard
 import pygame
 
+
 # Initialise pygame
 pygame.init()
 
@@ -104,6 +105,7 @@ def start_game():
     map = generateMap()
     roomsCleared = 0
     player = Player(100.0,100.0, Weapon("Sword", 5).getAttack(), 1.0,Weapon("Sword",5))
+    player.attack = player.generateRandomAttack()
     
     monster1 = Monster("Goblin 👺", 20.0, 5.0, 20.0)
     monster1.attack = monster1.generateRandomAttack()
