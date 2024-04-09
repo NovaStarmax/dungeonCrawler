@@ -94,7 +94,7 @@ def printMap(map, mapS):
 roomsCleared = 0
 starttime = time.time()
 has_key = False
-key_used = False
+
 
 def start_game():
     # Code pour démarrer le jeu
@@ -215,8 +215,7 @@ def start_game():
                 print("Déplacez-vous avec les touches zqsd")
                 pressed = ("Appuyez sur z/q/s/d pour vous déplacer")
                 pressed = keyboard.read_key()
-                time.sleep(0.1)
-
+                time.sleep(0.2)
 
                 if pressed == "z":
                     if map[playerX - 1][playerY] == "🧱":
@@ -229,25 +228,52 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX - 1][playerY] == "🏴":
-                        if has_key and not key_used:  
-                            print("\n" * 30)
+                        if has_key:
+                            print("\n"*30)
                             print("NOUVELLE SALLE")
                             roomsCleared += 1
-                            map = generateMap(None, True)
-                            playerX, playerY = [1, 1]
+                            map = generateMap(None,True)
+                            playerX, playerY = [1,1]
                             map[playerX][playerY] = "🧑"
-                            key_used = True  
-                        elif has_key and key_used:
-                            print("Vous avez déjà utilisé la clé pour cette porte.")
                         else:
                             print("Vous avez besoin d'une clé pour ouvrir cette porte.")
                     elif map[playerX - 1][playerY] == "📦":
-                        # Gérer la découverte d'un objet ou d'une arme ici
-                        pass
+                        itemOrWeapon = random.randint(1,100)
+                        if itemOrWeapon <=75:
+                            item = generateItem()
+                            print("Vous avez trouvé un " + item.getName())
+                            print("1. Utiliser")
+                            print("2. Laisser")
+                            choice = input("Entrez votre choix : ")
+                            if choice == "1":
+                                UseItem(player, item)
+                            elif choice == "2":
+                                pass
+                            else:
+                                print("Choix invalide")
+                        else:
+                            print("Vous avez trouvé une arme")
+                            currentAtc = player.getAttack()
+                            weapon = generateWeapon()
+                            print("Vous avez trouvé une " + weapon.getName())
+                            print("Cette arme inflige " + str(weapon.getAttack()) + " de dégâts")
+                            if weapon.getAttack() > player.weapon.getAttack():
+                                print("Vous avez équipé la " + weapon.getName())
+                                player.attack -= currentAtc
+                                player.attack += weapon.getAttack()
+                                player.weapon = weapon
+                                time.sleep(1)
+                            else:
+                                print("Vous n'avez pas équipé la " + weapon.getName())
+                        map[playerX][playerY] = "  "
+                        playerX -= 1
+                        map[playerX][playerY] = "🧑"
                     else:
                         map[playerX][playerY] = "  "
                         playerX -= 1
                         map[playerX][playerY] = "🧑"
+
+
 
 
                 elif pressed == "d":
