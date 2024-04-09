@@ -31,7 +31,6 @@ def main_menu():
 MapS = 10
 
 def generateMap(size=None, generate=False):
-    # Code de génération de la carte
     global MapS
     if generate == True:
         MapS = random.randint(10, 30)
@@ -44,10 +43,15 @@ def generateMap(size=None, generate=False):
     map[1][1] = "🏳️"
     map[MapS - 2][MapS - 2] = "🏴"
 
-    for i in range(0, MapS):
-        for j in range(0, MapS):
-            if random.randint(0, 100) < 5 and map[i][j] == "  ":
-                map[i][j] = "👹"
+    enemies_count = 0  # Initialize the count of enemies
+
+    while enemies_count < 5:  # Limit the number of enemies to 5
+        i = random.randint(0, MapS - 1)
+        j = random.randint(0, MapS - 1)
+        if map[i][j] == "  ":  # Check if the position is empty
+            map[i][j] = "👹"
+            enemies_count += 1
+
     for i in range(0, MapS):
         for j in range(0, MapS):
             if random.randint(0,100) > 99 and map[i][j] == "  ":
@@ -79,6 +83,7 @@ def generateMap(size=None, generate=False):
     else:
         return map
 
+
 def printMap(map, mapS):
     # Code pour afficher la carte
     for i in range(0, mapS):
@@ -97,34 +102,35 @@ def start_game():
     roomsCleared = 0
     player = Player(100.0,100.0, Weapon("Sword", 5).getAttack(), 1.0,Weapon("Sword",5))
     
-    monster1 = Monster("Goblin 👺", 20.0, 5.0, 20.0)
-    monster2 = Monster("Orc 👿", 30.0, 10.0, 30.0)
-    monster3 = Monster("Troll 🐸", 50.0, 15.0, 50.0)
-    monster4 = Monster("Dragon 🐉", 100.0, 20.0,   100.0)
-    monster5 = Monster("Giant 🧍", 150.0, 25.0, 150.0)
-    monster6 = Monster("Giant Spider 🕷️", 10.0, 2.0, 10.0)
-    monster7 = Monster("Giant Rat 🐀", 5.0, 1.0, 5.0)
-    monster8 = Monster("Giant Snake 🐍", 15.0, 3.0, 15.0)
-    monster9 = Monster("Giant Scorpion 🦂", 25.0, 4.0, 25.0)
-    monster10 = Monster("Giant Ant 🐜", 10.0, 2.0, 10.0)
-    monster11 = Monster("Giant Bee 🐝", 10.0, 2.0, 10.0)
-    monster12 = Monster("Giant Bat 🦇", 10.0, 2.0, 10.0)
-    monster13 = Monster("Giant Wolf 🐺", 20.0, 5.0, 20.0)
-    monster14 = Monster("Giant Bear 🐻", 30.0, 10.0, 30.0)
-    monster15 = Monster("Giant Lion 🦁", 50.0, 15.0, 50.0)
-    monster16 = Monster("Giant Tiger 🐅", 50.0, 15.0, 50.0)
-    monster17 = Monster("Giant Elephant 🐘", 100.0, 20.0, 100.0)
-    monster18 = Monster("Gryphon 🦅", 120.0, 20.0, 120.0)
-    monster19 = Monster("Hydra 🐉", 150.0, 25.0, 150.0)
-    monster20 = Monster("Minotaur 🐂", 80.0, 30.0, 80.0)
-    monster21 = Monster("Cyclops 👁️", 100.0, 30.0, 100.0)
-    monster22 = Monster("Golem 🗿", 150.0, 30.0, 150.0)
-    monster23 = Monster("Skeleton 💀", 20.0, 5.0, 20.0)
-    monster24 = Monster("Zombie 🧟", 30.0, 10.0, 30.0)
-    monster25 = Monster("Vampire 🧛", 30.0, 15.0, 30.0)
-    monster26 = Monster("Werewolf 🐺", 50.0, 20.0, 50.0)
-    monster27 = Monster("Wraith 👻", 10.0, 15.0, 10.0)
-    monster28 = Monster("Ghost 👻", 20.0, 10.0, 20.0)
+    monster1 = Monster("Goblin 👺", 20.0, 5.0, 20.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster2 = Monster("Orc 👿", 30.0, 10.0, 30.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster3 = Monster("Troll 🐸", 50.0, 15.0, 50.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster4 = Monster("Dragon 🐉", 100.0, 20.0, 100.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster5 = Monster("Giant 🧍", 150.0, 25.0, 150.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster6 = Monster("Giant Spider 🕷️", 10.0, 2.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster7 = Monster("Giant Rat 🐀", 5.0, 1.0, 5.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster8 = Monster("Giant Snake 🐍", 15.0, 3.0, 15.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster9 = Monster("Giant Scorpion 🦂", 25.0, 4.0, 25.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster10 = Monster("Giant Ant 🐜", 10.0, 2.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster11 = Monster("Giant Bee 🐝", 10.0, 2.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster12 = Monster("Giant Bat 🦇", 10.0, 2.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster13 = Monster("Giant Wolf 🐺", 20.0, 5.0, 20.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster14 = Monster("Giant Bear 🐻", 30.0, 10.0, 30.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster15 = Monster("Giant Lion 🦁", 50.0, 15.0, 50.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster16 = Monster("Giant Tiger 🐅", 50.0, 15.0, 50.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster17 = Monster("Giant Elephant 🐘", 100.0, 20.0, 100.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster18 = Monster("Gryphon 🦅", 120.0, 20.0, 120.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster19 = Monster("Hydra 🐉", 150.0, 25.0, 150.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster20 = Monster("Minotaur 🐂", 80.0, 30.0, 80.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster21 = Monster("Cyclops 👁️", 100.0, 30.0, 100.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster22 = Monster("Golem 🗿", 150.0, 30.0, 150.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster23 = Monster("Skeleton 💀", 20.0, 5.0, 20.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster24 = Monster("Zombie 🧟", 30.0, 10.0, 30.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster25 = Monster("Vampire 🧛", 30.0, 15.0, 30.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster26 = Monster("Werewolf 🐺", 50.0, 20.0, 50.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster27 = Monster("Wraith 👻", 10.0, 15.0, 10.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+    monster28 = Monster("Ghost 👻", 20.0, 10.0, 20.0, x=random.randint(0, MapS - 1), y=random.randint(0, MapS - 1))
+
 
 
     playerX, playerY = [1, 1]
@@ -395,13 +401,7 @@ def start_game():
                     else:
                         map[playerX][playerY] = "  "
                         playerX += 1
-                        map[playerX][playerY] = "🧑"
-                elif pressed == "esc":
-                    break
-
-
-                else:
-                    print("Choix invalide")
+                        map[playerX][playerY] = "🧑"       
             
         elif choice == "2":
             exit()
@@ -416,9 +416,14 @@ def start_game():
             print("'🧑' représente votre personnage.")
         else:
             print("Choix invalide")
+        
+
+
 while True:
     print("Vous avez nettoyé " + str(roomsCleared) + " pièces")
     totaltime = round((time.time() - starttime), 2)
     print("Vous avez survécu pendant " + str(totaltime) + " secondes")
     main_menu()
     pygame.mixer.music.stop()
+
+    

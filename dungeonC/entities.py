@@ -63,11 +63,13 @@ class Player:
 
 class Monster:
     # Classe Monster avec ses méthodes
-    def __init__(self, name, health, attack, maxhealth):
+    def __init__(self, name, health, attack, maxhealth, x, y):  # Ajoutez x et y comme arguments d'initialisation
         self.name = name
         self.health = health
         self.attack = attack
         self.maxhealth = maxhealth
+        self.x = x  # Initialisation de l'attribut x
+        self.y = y  # Initialisation de l'attribut y
     
     def getHealth(self):
         return self.health
@@ -80,6 +82,7 @@ class Monster:
     
     def getMaxHealth(self):
         return self.maxhealth
+
 
 # Fonctions de génération aléatoire pour les armes et les objets
 def generateWeapon():
