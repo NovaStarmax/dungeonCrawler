@@ -15,7 +15,6 @@ pygame.mixer.music.load("intro.mp3")
 # Démarrez la musique en boucle
 pygame.mixer.music.play(-1)
 
-
 def main_menu():
     print("Bienvenue dans le jeu Dungeon Crawler !")
     print("1. Démarrer le jeu")
@@ -33,6 +32,8 @@ MapS = 10
 
 def generateMap(size=None, generate=False):
     global MapS
+    global has_key
+    
     if generate == True:
         MapS = random.randint(10, 30)
     
@@ -96,19 +97,65 @@ roomsCleared = 0
 starttime = time.time()
 has_key = False
 
+def narrative_intro():
+    narrative_text = [
+        "Vous vous trouvez dans un labyrinthe ancien, perdu dans les tréfonds de la terre.",
+        "Les murs de pierre qui vous entourent semblent dégager une aura de mystère et d'obscurité.",
+        "Vous pouvez entendre des murmures lointains et sinistres, comme si les pierres elles-mêmes chuchotaient des secrets anciens.",
+        "Votre quête est de nettoyer ces lieux infestés de créatures maléfiques, et de trouver le chemin vers la liberté.",
+        "Soyez prudent, chaque pas que vous faites pourrait être votre dernier dans ce dédale mortel..."
+    ]
+
+    for line in narrative_text:
+        print(line)
+        time.sleep(3)  # Pause pour donner un effet de lecture
+
+
+def room_narrative():
+    room_texts = [
+        ["Vous entrez dans une salle sombre et humide. Des gouttes d'eau tombent du plafond, créant un son étrange et inquiétant.",
+        "Une odeur de moisissure envahit vos narines alors que vous explorez la salle. Des racines entrelacées serpentent le long des murs de pierre.",
+        "Votre lampe vacille, éclairant à peine les coins obscurs de la pièce. Des chauves-souris effrayées s'envolent à votre approche."],
+
+        ["La pièce s'ouvre sur un vaste hall, orné de fresques anciennes et de statues de pierre. Une atmosphère de grandeur perdue imprègne les lieux.",
+        "Vous découvrez un autel de pierre au centre de la salle, des offrandes oubliées jonchent le sol. Des chuchotements mystérieux semblent flotter dans l'air.",
+        "Des bruits de pas échos résonnent dans la salle vide, mais vous ne voyez personne. Vous avez l'impression d'être observé de toutes parts."],
+
+        ["Vous pénétrez dans une salle circulaire, les murs sont couverts de runes anciennes et de symboles mystérieux.",
+        "Un puits sombre occupe le centre de la pièce, émettant une aura de puissance mystique. Des éclats de lumière dansent à sa surface.",
+        "Des murmures magiques remplissent l'air alors que vous explorez la salle. Vous avez la sensation que des forces magiques puissantes sont à l'œuvre ici."],
+
+        ["La pièce est plongée dans l'obscurité totale. Vous entendez des bruits de grattement et de grognements, mais vous ne pouvez pas voir ce qui les cause.",
+        "Une lumière faible émane d'un coin de la pièce, révélant des silhouettes effrayantes qui semblent se mouvoir dans l'ombre.",
+        "Votre lampe éclaire soudain une scène macabre : des squelettes entassés contre les murs, des restes d'anciens aventuriers peut-être."],
+
+        ["Vous entrez dans une salle éclairée par une lueur verdâtre étrange. Des champignons luminescents poussent sur les parois, créant un spectacle étrange et magnifique.",
+        "Des échos de voix lointaines résonnent dans la pièce, mais vous ne voyez personne. Vous avez l'impression d'être transporté dans un autre monde.",
+        "Des portails magiques tourbillonnent dans l'air, vous transportant mentalement dans des lieux lointains et exotiques. Vous luttez pour distinguer la réalité de l'illusion."]
+]
+
+    # Sélectionner aléatoirement une liste de texte parmi les cinq salles
+    selected_text_list = random.choice(room_texts)
+    # Afficher chaque phrase de la liste sélectionnée
+    for line in selected_text_list:
+        print(line)
+        time.sleep(3)  # Pause pour afficher chaque ligne pendant un certain temps
+
 
 def start_game():
     # Code pour démarrer le jeu
     global starttime
     global roomsCleared
+    global has_key
     starttime = time.time()
     map = generateMap()
     roomsCleared = 0
+    narrative_intro()
     player = Player(100.0,100.0, Weapon("Sword", 5).getAttack(), 1.0,Weapon("Sword",5))
     player.attack = player.generateRandomAttack()
     
     monster1 = Monster("Goblin 👺", 20.0, 5.0, 20.0)
-    monster1.attack = monster1.generateRandomAttack()
+    
 
     monster2 = Monster("Orc 👿", 30.0, 10.0, 30.0)
     monster2.attack = monster1.generateRandomAttack()
@@ -123,13 +170,11 @@ def start_game():
     monster5.attack = monster1.generateRandomAttack()
 
     monster6 = Monster("Giant Spider 🕷️", 10.0, 2.0, 10.0)
-    monster6.attack = monster1.generateRandomAttack()
+
 
     monster7 = Monster("Giant Rat 🐀", 5.0, 1.0, 5.0)
-    monster7.attack = monster1.generateRandomAttack()
 
     monster8 = Monster("Giant Snake 🐍", 15.0, 3.0, 15.0)
-    monster8.attack = monster1.generateRandomAttack()
 
     monster9 = Monster("Giant Scorpion 🦂", 25.0, 4.0, 25.0)
     monster9.attack = monster1.generateRandomAttack()
@@ -138,19 +183,15 @@ def start_game():
     monster10.attack = monster1.generateRandomAttack()
 
     monster11 = Monster("Giant Bee 🐝", 10.0, 2.0, 10.0)
-    monster11.attack = monster1.generateRandomAttack()
 
     monster12 = Monster("Giant Bat 🦇", 10.0, 2.0, 10.0)
-    monster12.attack = monster1.generateRandomAttack()
 
     monster13 = Monster("Giant Wolf 🐺", 20.0, 5.0, 20.0)
-    monster13.attack = monster1.generateRandomAttack()
 
     monster14 = Monster("Giant Bear 🐻", 30.0, 10.0, 30.0)
     monster14.attack = monster1.generateRandomAttack()
 
     monster15 = Monster("Giant Lion 🦁", 50.0, 15.0, 50.0)
-    monster15.attack = monster1.generateRandomAttack()
 
     monster16 = Monster("Giant Tiger 🐅", 50.0, 15.0, 50.0)
     monster16.attack = monster1.generateRandomAttack()
@@ -204,6 +245,7 @@ def start_game():
         print("2. Quitter")
         print("3. Statistiques du joueur")
         print("4. Tutoriel")
+
         
         choice = input("Entrez votre choix : ")
         if choice == "1":
@@ -230,15 +272,31 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX - 1][playerY] == "🏴":
-                        if has_key:
+                        if not has_key:
+                            print("\nEs-tu sûr de vouloir continuer sans la clé ?")
+                            print("1. Oui")
+                            print("2. Non")
+                            choice = input("Entrez votre choix : ")
+                            if choice == "1":
+                                print("\nTu as essayé d'ouvrir la porte sans la clé, tu as reçu le foudroiement divin de Kyky la menace")
+                                return  # Arrête le jeu
+                            elif choice == "2":
+                                continue  # Continue le jeu normalement
+                            else:
+                                print("Choix invalide")
+                                continue  # Redemande le choix
+
+                        elif has_key:
                             print("\n"*30)
                             print("NOUVELLE SALLE")
                             roomsCleared += 1
+                            room_narrative()
                             map = generateMap(None,True)
+                            has_key = False
                             playerX, playerY = [1,1]
                             map[playerX][playerY] = "🧑"
-                        else:
-                            print("Vous avez besoin d'une clé pour ouvrir cette porte.")
+
+
                     elif map[playerX - 1][playerY] == "📦":
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
@@ -289,15 +347,30 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX][playerY + 1] == "🏴":
-                        if has_key:
+                        if not has_key:
+                            print("\nEs-tu sûr de vouloir continuer sans la clé ?")
+                            print("1. Oui")
+                            print("2. Non")
+                            choice = input("Entrez votre choix : ")
+                            if choice == "1":
+                                print("\nTu as essayé d'ouvrir la porte sans la clé, tu as reçu le foudroiement divin de Kyky la menace")
+                                return  # Arrête le jeu
+                            elif choice == "2":
+                                continue  # Continue le jeu normalement
+                            else:
+                                print("Choix invalide")
+                                continue  # Redemande le choix
+
+                        elif has_key:
                             print("\n"*30)
                             print("NOUVELLE SALLE")
                             roomsCleared += 1
+                            room_narrative()
                             map = generateMap(None,True)
+                            has_key = False
                             playerX, playerY = [1,1]
                             map[playerX][playerY] = "🧑"
-                        else:
-                            print("Vous avez besoin d'une clé pour ouvrir cette porte.")
+
                     elif map[playerX][playerY + 1] == "📦":
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
@@ -345,15 +418,30 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX][playerY - 1] == "🏴":
-                        if has_key:
+                        if not has_key:
+                            print("\nEs-tu sûr de vouloir continuer sans la clé ?")
+                            print("1. Oui")
+                            print("2. Non")
+                            choice = input("Entrez votre choix : ")
+                            if choice == "1":
+                                print("\nTu as essayé d'ouvrir la porte sans la clé, tu as reçu le foudroiement divin de Kyky la menace")
+                                return  # Arrête le jeu
+                            elif choice == "2":
+                                continue  # Continue le jeu normalement
+                            else:
+                                print("Choix invalide")
+                                continue  # Redemande le choix
+                        elif has_key:
                             print("\n"*30)
                             print("NOUVELLE SALLE")
                             roomsCleared += 1
+                            room_narrative()
                             map = generateMap(None,True)
+                            has_key = False
                             playerX, playerY = [1,1]
                             map[playerX][playerY] = "🧑"
-                        else:
-                            print("Vous avez besoin d'une clé pour ouvrir cette porte.")
+
+
                     elif map[playerX][playerY - 1] == "📦":
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
@@ -402,15 +490,31 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX + 1][playerY] == "🏴":
-                        if has_key:
+                        if not has_key:
+                            print("\nEs-tu sûr de vouloir continuer sans la clé ?")
+                            print("1. Oui")
+                            print("2. Non")
+                            choice = input("Entrez votre choix : ")
+                            if choice == "1":
+                                print("\nTu as essayé d'ouvrir la porte sans la clé, tu as reçu le foudroiement divin de Kyky la menace")
+                                return # Arrête le jeu
+                            elif choice == "2":
+                                continue  # Continue le jeu normalement
+                            else:
+                                print("Choix invalide")
+                                continue  # Redemande le choix
+
+                        elif has_key:
                             print("\n"*30)
                             print("NOUVELLE SALLE")
                             roomsCleared += 1
+                            room_narrative()
                             map = generateMap(None,True)
+                            has_key = False
                             playerX, playerY = [1,1]
                             map[playerX][playerY] = "🧑"
-                        else:
-                            print("Vous avez besoin d'une clé pour ouvrir cette porte.")
+
+
                     elif map[playerX + 1][playerY] == "📦":
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
