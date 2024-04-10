@@ -16,6 +16,7 @@ pygame.mixer.music.load("intro.mp3")
 pygame.mixer.music.play(-1)
 
 chest_sound = pygame.mixer.Sound("chest.mp3")
+tp_sound = pygame.mixer.Sound("tp.mp3")
 
 def main_menu():
     print("Bienvenue dans le jeu Dungeon Crawler !")
@@ -274,6 +275,7 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX - 1][playerY] == "🏴":
+                        tp_sound.play()
                         if not has_key:
                             print("\nEs-tu sûr de vouloir continuer sans la clé ?")
                             print("1. Oui")
@@ -350,6 +352,7 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX][playerY + 1] == "🏴":
+                        tp_sound.play()
                         if not has_key:
                             print("\nEs-tu sûr de vouloir continuer sans la clé ?")
                             print("1. Oui")
@@ -422,6 +425,7 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX][playerY - 1] == "🏴":
+                        tp_sound.play()
                         if not has_key:
                             print("\nEs-tu sûr de vouloir continuer sans la clé ?")
                             print("1. Oui")
@@ -495,6 +499,7 @@ def start_game():
                         map[playerX][playerY] = "🧑"
                         has_key = True
                     elif map[playerX + 1][playerY] == "🏴":
+                        tp_sound.play()
                         if not has_key:
                             print("\nEs-tu sûr de vouloir continuer sans la clé ?")
                             print("1. Oui")
@@ -579,5 +584,7 @@ while True:
     print("Vous avez survécu pendant " + str(totaltime) + " secondes")
     main_menu()
     pygame.mixer.music.stop()
+    end_game_music = pygame.mixer.Sound("end.mp3")
+    end_game_music.play()
 
     
