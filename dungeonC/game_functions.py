@@ -15,6 +15,8 @@ pygame.mixer.music.load("intro.mp3")
 # Démarrez la musique en boucle
 pygame.mixer.music.play(-1)
 
+chest_sound = pygame.mixer.Sound("chest.mp3")
+
 def main_menu():
     print("Bienvenue dans le jeu Dungeon Crawler !")
     print("1. Démarrer le jeu")
@@ -27,6 +29,7 @@ def main_menu():
     else:
         print("Choix invalide")
         main_menu()
+
 
 MapS = 10
 
@@ -111,7 +114,7 @@ def narrative_intro():
         time.sleep(3)  # Pause pour donner un effet de lecture
 
 
-def room_narrative():
+def room_narrative():   
     room_texts = [
         ["Vous entrez dans une salle sombre et humide. Des gouttes d'eau tombent du plafond, créant un son étrange et inquiétant.",
         "Une odeur de moisissure envahit vos narines alors que vous explorez la salle. Des racines entrelacées serpentent le long des murs de pierre.",
@@ -139,7 +142,7 @@ def room_narrative():
     # Afficher chaque phrase de la liste sélectionnée
     for line in selected_text_list:
         print(line)
-        time.sleep(3)  # Pause pour afficher chaque ligne pendant un certain temps
+        time.sleep(2)  # Pause pour afficher chaque ligne pendant un certain temps
 
 
 def start_game():
@@ -170,7 +173,6 @@ def start_game():
     monster5.attack = monster1.generateRandomAttack()
 
     monster6 = Monster("Giant Spider 🕷️", 10.0, 2.0, 10.0)
-
 
     monster7 = Monster("Giant Rat 🐀", 5.0, 1.0, 5.0)
 
@@ -298,6 +300,7 @@ def start_game():
 
 
                     elif map[playerX - 1][playerY] == "📦":
+                        chest_sound.play()
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
@@ -372,6 +375,7 @@ def start_game():
                             map[playerX][playerY] = "🧑"
 
                     elif map[playerX][playerY + 1] == "📦":
+                        chest_sound.play()
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
@@ -443,6 +447,7 @@ def start_game():
 
 
                     elif map[playerX][playerY - 1] == "📦":
+                        chest_sound.play()
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
@@ -516,6 +521,7 @@ def start_game():
 
 
                     elif map[playerX + 1][playerY] == "📦":
+                        chest_sound.play()
                         itemOrWeapon = random.randint(1,100)
                         if itemOrWeapon <=75:
                             item = generateItem()
