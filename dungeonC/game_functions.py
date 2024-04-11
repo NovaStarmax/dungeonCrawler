@@ -31,7 +31,6 @@ def main_menu():
         print("Choix invalide")
         main_menu()
 
-
 MapS = 10
 
 def generateMap(size=None, generate=False):
@@ -101,6 +100,7 @@ roomsCleared = 0
 starttime = time.time()
 has_key = False
 
+
 def narrative_intro():
     narrative_text = [
         "Vous vous trouvez dans un labyrinthe ancien, perdu dans les tréfonds de la terre.",
@@ -108,6 +108,7 @@ def narrative_intro():
         "Vous pouvez entendre des murmures lointains et sinistres, comme si les pierres elles-mêmes chuchotaient des secrets anciens.",
         "Votre quête est de nettoyer ces lieux infestés de créatures maléfiques, et de trouver le chemin vers la liberté.",
         "Soyez prudent, chaque pas que vous faites pourrait être votre dernier dans ce dédale mortel..."
+        "Vous devez éliminer au moins un ennemie pour obtenir une clé afin d'accéder à la salle suivante"
     ]
 
     for line in narrative_text:
