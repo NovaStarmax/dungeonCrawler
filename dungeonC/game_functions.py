@@ -159,82 +159,82 @@ def start_game():
     player = Player(100.0,100.0, Weapon("Sword", 5).getAttack(), 1.0,Weapon("Sword",5))
     player.attack = player.generateRandomAttack()
     
-    monster1 = Monster("Goblin 👺", 20.0, 5.0, 20.0)
-    
+    monster1 = Monster("Nécromorphe Écorché", 20.0, 5.0, 20.0)
 
-    monster2 = Monster("Orc 👿", 30.0, 10.0, 30.0)
+    monster2 = Monster("Banshee Maudite", 30.0, 10.0, 30.0)
     monster2.attack = monster1.generateRandomAttack()
 
-    monster3 = Monster("Troll 🐸", 50.0, 15.0, 50.0)
+    monster3 = Monster("Chimère Abyssale", 50.0, 15.0, 50.0)
     monster3.attack = monster1.generateRandomAttack()
 
-    monster4 = Monster("Dragon 🐉", 100.0, 20.0, 100.0)
+    monster4 = Monster("Élémental de Ténèbres", 100.0, 20.0, 100.0)
     monster4.attack = monster1.generateRandomAttack()
 
-    monster5 = Monster("Giant 🧍", 150.0, 25.0, 150.0)
+    monster5 = Monster("Harpie Sombre", 150.0, 25.0, 150.0)
     monster5.attack = monster1.generateRandomAttack()
 
-    monster6 = Monster("Giant Spider 🕷️", 10.0, 2.0, 10.0)
+    monster6 = Monster("Minotaure des Abysses", 10.0, 2.0, 10.0)
 
-    monster7 = Monster("Giant Rat 🐀", 5.0, 1.0, 5.0)
+    monster7 = Monster("Wendigo Affamé", 5.0, 1.0, 5.0)
 
-    monster8 = Monster("Giant Snake 🐍", 15.0, 3.0, 15.0)
+    monster8 = Monster("Squelette Maudit", 15.0, 3.0, 15.0)
 
-    monster9 = Monster("Giant Scorpion 🦂", 25.0, 4.0, 25.0)
+    monster9 = Monster("Méduse Infernale", 25.0, 4.0, 25.0)
     monster9.attack = monster1.generateRandomAttack()
 
-    monster10 = Monster("Giant Ant 🐜", 10.0, 2.0, 10.0)
+    monster10 = Monster("Ombre Maudite", 10.0, 2.0, 10.0)
     monster10.attack = monster1.generateRandomAttack()
 
-    monster11 = Monster("Giant Bee 🐝", 10.0, 2.0, 10.0)
+    monster11 = Monster("Chimère Sombre", 10.0, 2.0, 10.0)
 
-    monster12 = Monster("Giant Bat 🦇", 10.0, 2.0, 10.0)
+    monster12 = Monster("Spectre des Abysses", 10.0, 2.0, 10.0)
 
-    monster13 = Monster("Giant Wolf 🐺", 20.0, 5.0, 20.0)
+    monster13 = Monster("Golem de Pierre", 20.0, 5.0, 20.0)
 
-    monster14 = Monster("Giant Bear 🐻", 30.0, 10.0, 30.0)
+    monster14 = Monster("Sorcière Sanguinaire", 30.0, 10.0, 30.0)
     monster14.attack = monster1.generateRandomAttack()
 
-    monster15 = Monster("Giant Lion 🦁", 50.0, 15.0, 50.0)
+    monster15 = Monster("Basilic de l'Enfer", 50.0, 15.0, 50.0)
 
-    monster16 = Monster("Giant Tiger 🐅", 50.0, 15.0, 50.0)
+    monster16 = Monster("Goule Dévoreuse", 50.0, 15.0, 50.0)
     monster16.attack = monster1.generateRandomAttack()
 
-    monster17 = Monster("Giant Elephant 🐘", 100.0, 20.0, 100.0)
+    monster17 = Monster("Démon des Marais", 100.0, 20.0, 100.0)
     monster17.attack = monster1.generateRandomAttack()
 
-    monster18 = Monster("Gryphon 🦅", 120.0, 20.0, 120.0)
+    monster18 = Monster("Revenant Vengeur", 120.0, 20.0, 120.0)
     monster18.attack = monster1.generateRandomAttack()
 
-    monster19 = Monster("Hydra 🐉", 150.0, 25.0, 150.0)
+    monster19 = Monster("Araignée Venimeuse", 150.0, 25.0, 150.0)
     monster19.attack = monster1.generateRandomAttack()
 
-    monster20 = Monster("Minotaur 🐂", 80.0, 30.0, 80.0)
+    monster20 = Monster("Wyrm Infernal", 80.0, 30.0, 80.0)
     monster20.attack = monster1.generateRandomAttack()
 
-    monster21 = Monster("Cyclops 👁️", 100.0, 30.0, 100.0)
+    monster21 = Monster("Kraken des Profondeurs", 100.0, 30.0, 100.0)
     monster21.attack = monster1.generateRandomAttack()
 
-    monster22 = Monster("Golem 🗿", 150.0, 30.0, 150.0)
+    monster22 = Monster("Gargouille Maléfique", 150.0, 30.0, 150.0)
     monster22.attack = monster1.generateRandomAttack()
 
-    monster23 = Monster("Skeleton 💀", 20.0, 5.0, 20.0)
+    monster23 = Monster("Gobelours Corrompu", 20.0, 5.0, 20.0)
     monster23.attack = monster1.generateRandomAttack()
 
-    monster24 = Monster("Zombie 🧟", 30.0, 10.0, 30.0)
+    monster24 = Monster("Géant des Montagnes", 30.0, 10.0, 30.0)
     monster24.attack = monster1.generateRandomAttack()
 
-    monster25 = Monster("Vampire 🧛", 30.0, 15.0, 30.0)
+    monster25 = Monster("Esprit Tourmenté", 30.0, 15.0, 30.0)
     monster25.attack = monster1.generateRandomAttack()
 
-    monster26 = Monster("Werewolf 🐺", 50.0, 20.0, 50.0)
+    monster26 = Monster("Dragon des Ténèbres", 50.0, 20.0, 50.0)
     monster26.attack = monster1.generateRandomAttack()
 
-    monster27 = Monster("Wraith 👻", 10.0, 15.0, 10.0)
+    monster27 = Monster("Hydre Noire", 10.0, 15.0, 10.0)
     monster27.attack = monster1.generateRandomAttack()
 
-    monster28 = Monster("Ghost 👻", 20.0, 10.0, 20.0)
+    monster28 = Monster("Liche Déchue", 20.0, 10.0, 20.0)
     monster28.attack = monster1.generateRandomAttack()
+
 
 
     playerX, playerY = [1, 1]
